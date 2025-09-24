@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>樱花飘落</title>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      z-index: 100;
+    }
+    .petal {
+      position: absolute;
+      top: -10%;
+      background: #ffcccc;
+      border-radius: 50%;
+      opacity: 0.7;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh) translateX(100px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="title">春日·樱花</div>
+  <script>
+    // 每隔 100ms 掉一片樱花
+    setInterval(() => {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      
+      const size = Math.random() * 20 + 10;
+      const left = Math.random() * 100;
+      
+      petal.style.width = `${size}px`;
+      petal.style.height = `${size}px`;
+      petal.style.left = `${left}%`;
+      
+      document.body.appendChild(petal);
+      
+      // 3秒后删除，避免卡顿
+      setTimeout(() => petal.remove(), 3000);
+    }, 100);
+  </script>
+</body>
+</html>
